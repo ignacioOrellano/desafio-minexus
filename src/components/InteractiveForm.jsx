@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCountries } from "../hooks/useCountries";
 import { validateForm } from "../utils/validate";
 import { ConfirmationModal } from "./confirmationModal";
+import { Toast } from "./Toast";
 
 function InteractiveForm() {
   const {
@@ -17,6 +18,12 @@ function InteractiveForm() {
   const [errors, setErrors] = useState({});
 
   const [openModal, setOpenModal] = useState(false);
+
+  const [openToast, setOpenToast] = useState(false);
+  const [toastValue, setToastValue] = useState({
+    msg: "",
+    error: false,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,6 +58,12 @@ function InteractiveForm() {
         handleCloseModal={() => setOpenModal(false)}
         handleConfirm={handleConfirm}
       />
+      <Toast
+        value={toastValue}
+        open={openToast}
+        handleClose={() => setOpenToast(false)}
+      />
+
       <div className="flex-grow content-center place-items-center bg-zinc-50">
         <form
           name="main"
