@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCountries } from "../hooks/useCountries";
 import { validateForm } from "../utils/validate";
+import { ConfirmationModal } from "./confirmationModal";
 
 function InteractiveForm() {
   const {
@@ -15,6 +16,8 @@ function InteractiveForm() {
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
+  const [openModal, setOpenModal] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const fields = Object.fromEntries(new window.FormData(event.target));
@@ -25,7 +28,7 @@ function InteractiveForm() {
     }
     setErrors({});
     setData(fields);
-    // setOpenModal(true);
+    setOpenModal(true);
   };
 
   const handleConfirm = () => {
@@ -41,181 +44,189 @@ function InteractiveForm() {
   };
 
   return (
-    <div className="flex-grow content-center place-items-center bg-zinc-50">
-      <form
-        name="main"
-        className="px-5 py-2 w-screen xs:w-100 bg-white flex flex-col gap-2 rounded-xl ring-4 ring-blue-600 focus:shadow-[10px_10px_#155dfc]  hover:shadow-[10px_10px_#155dfc] transition duration-200 ease-in-out select-none"
-        onSubmit={handleSubmit}
-      >
-        <p className="text-3xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
-          Regístrese.
-        </p>
-        <div className="flex flex-col justify-start gap-0.5">
-          <label htmlFor="countries" className="text-sm">
-            Seleccione un país
-          </label>
-          {countries ? (
-            <select
-              name="country"
-              id="countries"
-              className="rounded-sm p-0.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2"
-              onChange={handleChangeCountry}
-            >
-              {countries.map((country) => {
-                return (
-                  <option
-                    key={country.id}
-                    value={country.name}
-                    className={`text-blue-600 checked:font-bold`}
-                  >
-                    {country.name}
-                  </option>
-                );
-              })}
-            </select>
-          ) : (
-            <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-              Loading...
-            </div>
-          )}
-        </div>
-
-        <div className="flex flex-col justify-start gap-0.5">
-          <label htmlFor="states" className="text-sm">
-            Seleccione un estado
-          </label>
-          {states ? (
-            <select
-              name="state"
-              id="states"
-              className="rounded-sm p-0.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2"
-              onChange={handleChangeState}
-            >
-              {states.map((state) => {
-                return (
-                  <option
-                    className="text-blue-600 checked:font-bold"
-                    key={state.id}
-                    value={state.name}
-                  >
-                    {state.name}
-                  </option>
-                );
-              })}
-            </select>
-          ) : (
-            <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-              Loading...
-            </div>
-          )}
-        </div>
-
-        {cities ? (
-          cities.length > 0 && (
-            <div className="flex flex-col justify-start gap-0.5">
-              <label htmlFor="city" className="text-sm">
-                Seleccione una ciudad
-              </label>
+    <>
+      <ConfirmationModal
+        data={data}
+        openModal={openModal}
+        handleCloseModal={() => setOpenModal(false)}
+        handleConfirm={handleConfirm}
+      />
+      <div className="flex-grow content-center place-items-center bg-zinc-50">
+        <form
+          name="main"
+          className="px-5 py-2 w-screen xs:w-100 bg-white flex flex-col gap-2 rounded-xl ring-4 ring-blue-600 focus:shadow-[10px_10px_#155dfc]  hover:shadow-[10px_10px_#155dfc] transition duration-200 ease-in-out select-none"
+          onSubmit={handleSubmit}
+        >
+          <p className="text-3xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
+            Regístrese.
+          </p>
+          <div className="flex flex-col justify-start gap-0.5">
+            <label htmlFor="countries" className="text-sm">
+              Seleccione un país
+            </label>
+            {countries ? (
               <select
-                name="city"
-                id="city"
+                name="country"
+                id="countries"
                 className="rounded-sm p-0.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2"
+                onChange={handleChangeCountry}
               >
-                {cities.map((city) => {
+                {countries.map((country) => {
                   return (
                     <option
-                      key={city.id}
-                      value={city.name}
-                      className="text-blue-600 checked:font-bold"
+                      key={country.id}
+                      value={country.name}
+                      className={`text-blue-600 checked:font-bold`}
                     >
-                      {city.name}
+                      {country.name}
                     </option>
                   );
                 })}
               </select>
-            </div>
-          )
-        ) : (
-          <div className="flex flex-col justify-start gap-0.5">
-            <p htmlFor="city" className="text-sm">
-              Seleccione una ciudad
-            </p>
-            <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-              Loading...
-            </div>
+            ) : (
+              <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
+                Loading...
+              </div>
+            )}
           </div>
-        )}
 
-        <div className="flex flex-col justify-start gap-0.5">
-          <label htmlFor="name" className="text-sm">
-            Nombre completo
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
-              errors.name
-                ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
-                : " ring-blue-700 shadow-[5px_5px_#1447e6]"
-            }`}
-          />
-          {errors.name && (
-            <span className="text-xs font-bold text-red-500 pt-0.5">
-              *{errors.name}
-            </span>
+          <div className="flex flex-col justify-start gap-0.5">
+            <label htmlFor="states" className="text-sm">
+              Seleccione un estado
+            </label>
+            {states ? (
+              <select
+                name="state"
+                id="states"
+                className="rounded-sm p-0.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2"
+                onChange={handleChangeState}
+              >
+                {states.map((state) => {
+                  return (
+                    <option
+                      className="text-blue-600 checked:font-bold"
+                      key={state.id}
+                      value={state.name}
+                    >
+                      {state.name}
+                    </option>
+                  );
+                })}
+              </select>
+            ) : (
+              <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
+                Loading...
+              </div>
+            )}
+          </div>
+
+          {cities ? (
+            cities.length > 0 && (
+              <div className="flex flex-col justify-start gap-0.5">
+                <label htmlFor="city" className="text-sm">
+                  Seleccione una ciudad
+                </label>
+                <select
+                  name="city"
+                  id="city"
+                  className="rounded-sm p-0.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2"
+                >
+                  {cities.map((city) => {
+                    return (
+                      <option
+                        key={city.id}
+                        value={city.name}
+                        className="text-blue-600 checked:font-bold"
+                      >
+                        {city.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            )
+          ) : (
+            <div className="flex flex-col justify-start gap-0.5">
+              <p htmlFor="city" className="text-sm">
+                Seleccione una ciudad
+              </p>
+              <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
+                Loading...
+              </div>
+            </div>
           )}
-        </div>
-        <div className="flex flex-col justify-start gap-0.5">
-          <label htmlFor="mail" className="text-sm">
-            Correo electrónico
-          </label>
-          <input
-            type="text"
-            name="mail"
-            id="mail"
-            className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
-              errors.mail
-                ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
-                : " ring-blue-700 shadow-[5px_5px_#1447e6]"
-            }`}
-          />
-          {errors.mail && (
-            <span className="text-xs font-bold text-red-500 pt-0.5">
-              *{errors.mail}
-            </span>
-          )}
-        </div>
 
-        <div className="flex flex-col justify-start gap-0.5">
-          <label htmlFor="direction" className="text-sm">
-            Dirección
-          </label>
-          <input
-            type="text"
-            name="direction"
-            id="direction"
-            className={`rounded-sm py-0.5 px-2 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 shadow-[5px_5px_#1447e6] hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white`}
-          />
-        </div>
+          <div className="flex flex-col justify-start gap-0.5">
+            <label htmlFor="name" className="text-sm">
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
+                errors.name
+                  ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
+                  : " ring-blue-700 shadow-[5px_5px_#1447e6]"
+              }`}
+            />
+            {errors.name && (
+              <span className="text-xs font-bold text-red-500 pt-0.5">
+                *{errors.name}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-col justify-start gap-0.5">
+            <label htmlFor="mail" className="text-sm">
+              Correo electrónico
+            </label>
+            <input
+              type="text"
+              name="mail"
+              id="mail"
+              className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
+                errors.mail
+                  ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
+                  : " ring-blue-700 shadow-[5px_5px_#1447e6]"
+              }`}
+            />
+            {errors.mail && (
+              <span className="text-xs font-bold text-red-500 pt-0.5">
+                *{errors.mail}
+              </span>
+            )}
+          </div>
 
-        <div className="flex justify-around m-3">
-          <button
-            type="submit"
-            className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
-            // onClick={handleConfirm}
-          >
-            Guardar
-          </button>
-          <button
-            type="reset"
-            className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#fb2c36] hover:text-red-500 hover:ring-red-500"
-          >
-            Cancelar
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="flex flex-col justify-start gap-0.5">
+            <label htmlFor="direction" className="text-sm">
+              Dirección
+            </label>
+            <input
+              type="text"
+              name="direction"
+              id="direction"
+              className={`rounded-sm py-0.5 px-2 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 shadow-[5px_5px_#1447e6] hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white`}
+            />
+          </div>
+
+          <div className="flex justify-around m-3">
+            <button
+              type="submit"
+              className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
+              // onClick={handleConfirm}
+            >
+              Guardar
+            </button>
+            <button
+              type="reset"
+              className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#fb2c36] hover:text-red-500 hover:ring-red-500"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 
