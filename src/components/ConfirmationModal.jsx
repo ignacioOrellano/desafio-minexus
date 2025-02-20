@@ -14,7 +14,7 @@ export function ConfirmationModal({
   return (
     <div
       className={`fixed inset-0 bg-[rgb(0,0,0,0.1)] backdrop-blur-xs z-40 ${
-        openModal ? "visible" : "invisible"
+        openModal ? "block" : "hidden"
       }`}
     >
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-lg pt-8 px-10 pb-2.5 ring-4 ring-blue-600 w-80 h-fit flex flex-col justify-start z-50">
@@ -26,13 +26,13 @@ export function ConfirmationModal({
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="currentColor"
-            class="size-6"
+            className="size-6"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M6 18 18 6M6 6l12 12"
             />
           </svg>
