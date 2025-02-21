@@ -70,11 +70,11 @@ function InteractiveForm() {
           className="px-5 py-2 w-screen xs:w-100 bg-white flex flex-col gap-2 rounded-xl ring-4 ring-blue-600 focus:shadow-[10px_10px_#155dfc]  hover:shadow-[10px_10px_#155dfc] transition duration-200 ease-in-out select-none"
           onSubmit={handleSubmit}
         >
-          <p className="text-3xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
+          <p className="text-4xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
             Regístrese.
           </p>
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="countries" className="text-sm">
+            <label htmlFor="countries" className="text-lg">
               Seleccione un país
             </label>
             {countries ? (
@@ -104,7 +104,7 @@ function InteractiveForm() {
           </div>
 
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="states" className="text-sm">
+            <label htmlFor="states" className="text-md">
               Seleccione un estado
             </label>
             {states ? (
@@ -136,7 +136,7 @@ function InteractiveForm() {
           {cities ? (
             cities.length > 0 && (
               <div className="flex flex-col justify-start gap-0.5">
-                <label htmlFor="city" className="text-sm">
+                <label htmlFor="city" className="text-md">
                   Seleccione una ciudad
                 </label>
                 <select
@@ -160,7 +160,7 @@ function InteractiveForm() {
             )
           ) : (
             <div className="flex flex-col justify-start gap-0.5">
-              <p htmlFor="city" className="text-sm">
+              <p htmlFor="city" className="text-md">
                 Seleccione una ciudad
               </p>
               <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
@@ -170,14 +170,14 @@ function InteractiveForm() {
           )}
 
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="name" className="text-sm">
+            <label htmlFor="name" className="text-md">
               Nombre completo
             </label>
             <input
               type="text"
               name="name"
               id="name"
-              className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
+              className={`rounded-sm py-0.5 px-2 ring-1 hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
                 errors.name
                   ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
                   : " ring-blue-700 shadow-[5px_5px_#1447e6]"
@@ -190,14 +190,14 @@ function InteractiveForm() {
             )}
           </div>
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="mail" className="text-sm">
+            <label htmlFor="mail" className="text-md">
               Correo electrónico
             </label>
             <input
               type="text"
               name="mail"
               id="mail"
-              className={`rounded-sm py-0.5 px-2 ring-1 hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
+              className={`rounded-sm py-0.5 px-2 ring-1 hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
                 errors.mail
                   ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
                   : " ring-blue-700 shadow-[5px_5px_#1447e6]"
@@ -211,28 +211,28 @@ function InteractiveForm() {
           </div>
 
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="direction" className="text-sm">
+            <label htmlFor="direction" className="text-md">
               Dirección
             </label>
             <input
               type="text"
               name="direction"
               id="direction"
-              className={`rounded-sm py-0.5 px-2 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 shadow-[5px_5px_#1447e6] hover:cursor-pointer hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white`}
+              className={`rounded-sm py-0.5 px-2 ring-1 ring-blue-700 shadow-[5px_5px_#1447e6] hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white`}
             />
           </div>
 
           <div className="flex justify-around m-3">
             <button
               type="submit"
-              className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
+              className="bg-white text-lg font-semibold rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
               // onClick={handleConfirm}
             >
               Guardar
             </button>
             <button
               type="reset"
-              className="bg-white font-medium rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#fb2c36] hover:text-red-500 hover:ring-red-500"
+              className="bg-white text-lg font-semibold rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#fb2c36] hover:text-red-500 hover:ring-red-500"
             >
               Cancelar
             </button>

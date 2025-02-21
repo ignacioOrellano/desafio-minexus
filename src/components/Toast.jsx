@@ -13,14 +13,14 @@ export function Toast({ value, open, handleClose }) {
 
   return (
     <div
-      className={`fixed bottom-10 right-4 text-white font-medium rounded-lg pl-3 pr-1 py-1.5 animate-slide-in flex flex-row gap-2 justify-between items-center ${
+      className={`fixed bottom-12 right-2 text-white font-medium rounded-lg pl-3 pr-1 py-1.5 animate-slide-in flex flex-row gap-2 justify-between items-center ${
         open ? "block" : "hidden"
       } ${error ? "bg-red-500" : "bg-green-500"}`}
     >
-      <p className="text-sm">{msg}</p>
+      <p className="text-md">{msg}</p>
       <div
         onClick={handleClose}
-        className="cursor-pointer rounded text-sm font-normal hover:bg-[rgba(0,0,0,0.2)] transition-all duration-150"
+        className="mr-1 cursor-pointer rounded text-sm font-normal hover:bg-[rgba(0,0,0,0.2)] transition-all duration-150"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
