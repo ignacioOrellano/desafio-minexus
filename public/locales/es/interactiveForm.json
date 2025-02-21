@@ -10,5 +10,9 @@
   "saveButton": "Guardar",
   "cancelButton": "Cancelar",
   "errorMessage": "Hubo un error",
-  "successMessage": "Datos enviados con éxito"
+  "successMessage": "Datos enviados con éxito",
+  "formErrors": {
+    "required": "Este es un campo obligatorio",
+    "email": "Debe ingresar un mail válido"
+  }
 }

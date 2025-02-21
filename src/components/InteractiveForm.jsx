@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useCountries } from "../hooks/useCountries";
-import { validateForm } from "../utils/validate";
 import { ConfirmationModal } from "./confirmationModal";
 import { Toast } from "./Toast";
 import { useTranslation } from "react-i18next";
+import { object, string } from "yup";
 
 function InteractiveForm() {
   const {
@@ -27,17 +27,25 @@ function InteractiveForm() {
     error: false,
   });
 
-  const handleSubmit = (event) => {
+  const validationSchema = object({
+    name: string().required(),
+    email: string().email().required(),
+    address: string().optional(),
+  });
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const fields = Object.fromEntries(new window.FormData(event.target));
-    const { isValid, errors: newErrors } = validateForm(fields);
-    if (!isValid) {
+    const formData = Object.fromEntries(new window.FormData(event.target));
+    try {
+      await validationSchema.validate(formData, { abortEarly: false });
+      setErrors({});
+      setData(formData);
+      setOpenModal(true);
+    } catch (error) {
+      const newErrors = {};
+      error.inner.forEach((err) => (newErrors[err.path] = err.type));
       setErrors(newErrors);
-      return;
     }
-    setErrors({});
-    setData(fields);
-    setOpenModal(true);
   };
 
   const handleConfirm = () => {
@@ -70,6 +78,7 @@ function InteractiveForm() {
           name="main"
           className="px-5 py-2 w-screen xs:w-100 bg-white flex flex-col gap-2 rounded-xl ring-4 ring-blue-600 focus:shadow-[10px_10px_#155dfc]  hover:shadow-[10px_10px_#155dfc] transition duration-200 ease-in-out select-none"
           onSubmit={handleSubmit}
+          onReset={() => setErrors({})}
         >
           <p className="text-4xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
             {t("title")}.
@@ -186,27 +195,30 @@ function InteractiveForm() {
             />
             {errors.name && (
               <span className="text-xs font-bold text-red-500 pt-0.5">
-                *{errors.name}
+                *{errors.name && t("formErrors.required")}
               </span>
             )}
           </div>
           <div className="flex flex-col justify-start gap-0.5">
-            <label htmlFor="mail" className="text-md">
+            <label htmlFor="email" className="text-md">
               {t("email")}
             </label>
             <input
               type="text"
-              name="mail"
-              id="mail"
+              name="email"
+              id="email"
               className={`rounded-sm py-0.5 px-2 ring-1 hover:shadow-none focus:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2 focus:ring-2 selection:bg-pink-400 selection:text-white ${
-                errors.mail
+                errors.email
                   ? "ring-red-500 shadow-[5px_5px_#fb2c36]"
                   : " ring-blue-700 shadow-[5px_5px_#1447e6]"
               }`}
             />
-            {errors.mail && (
+            {errors.email && (
               <span className="text-xs font-bold text-red-500 pt-0.5">
-                *{errors.mail}
+                *
+                {errors.email === "required"
+                  ? t("formErrors.required")
+                  : errors.email === "email" && t("formErrors.email")}
               </span>
             )}
           </div>
@@ -227,7 +239,6 @@ function InteractiveForm() {
             <button
               type="submit"
               className="bg-white text-lg font-semibold rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
-              // onClick={handleConfirm}
             >
               {t("saveButton")}
             </button>

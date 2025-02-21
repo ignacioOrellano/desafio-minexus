@@ -10,5 +10,9 @@
   "saveButton": "Save",
   "cancelButton": "Cancel",
   "errorMessage": "There was an error",
-  "successMessage": "Data submitted successfully"
+  "successMessage": "Data submitted successfully",
+  "formErrors": {
+    "required": "This is a required field",
+    "email": "You must enter a valid email"
+  }
 }

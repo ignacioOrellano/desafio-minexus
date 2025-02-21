@@ -7,7 +7,7 @@ export function ConfirmationModal({
   handleConfirm,
 }) {
   const { t } = useTranslation(["confirmationModal", "common"]);
-  const { name, mail, country, state, city, direction } = data;
+  const { name, email, country, state, city, direction } = data;
 
   const handleClick = () => {
     handleCloseModal();
@@ -47,7 +47,7 @@ export function ConfirmationModal({
           <strong>{t("name")}:</strong> {name}
         </p>
         <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-          <strong>{t("email")}:</strong> {mail}
+          <strong>{t("email")}:</strong> {email}
         </p>
         <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
           <strong>{t("country")}:</strong> {country}
