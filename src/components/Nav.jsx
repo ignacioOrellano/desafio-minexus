@@ -47,7 +47,7 @@ function Nav() {
         <MenuItems
           anchor="bottom end"
           transition
-          className="text-md mt-2 px-1 py-1 rounded-lg flex flex-col gapy-1 animate-opacity bg-white ring-4 ring-black"
+          className="text-md mt-2 px-1 py-1 rounded-lg flex flex-col gapy-1 animate-opacity bg-white ring-3 ring-black hover:shadow-[7px_7px_black] transition-shadow ease duration-150"
         >
           {lang.map((lng) => {
             return (
