@@ -1,0 +1,14 @@
+{
+  "title": "Regístrese",
+  "country": "Seleccione un país",
+  "state": "Seleccione un estado",
+  "city": "Seleccione una ciudad",
+  "name": "Nombre completo",
+  "email": "Correo electrónico",
+  "address": "Dirección",
+  "loading": "Cargando",
+  "saveButton": "Guardar",
+  "cancelButton": "Cancelar",
+  "errorMessage": "Hubo un error",
+  "successMessage": "Datos enviados con éxito"
+}

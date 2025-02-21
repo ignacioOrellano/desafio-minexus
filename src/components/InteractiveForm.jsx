@@ -3,6 +3,7 @@ import { useCountries } from "../hooks/useCountries";
 import { validateForm } from "../utils/validate";
 import { ConfirmationModal } from "./confirmationModal";
 import { Toast } from "./Toast";
+import { useTranslation } from "react-i18next";
 
 function InteractiveForm() {
   const {
@@ -13,6 +14,7 @@ function InteractiveForm() {
     handleChangeState,
     getCountries,
   } = useCountries();
+  const { t } = useTranslation(["interactiveForm", "common"]);
 
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
@@ -42,7 +44,6 @@ function InteractiveForm() {
     // TODO: send data, check if res status is 200
     setOpenToast(true);
     setToastValue({
-      msg: "Datos enviados con éxito!",
       error: false,
     });
     const form = document.forms["main"];
@@ -71,11 +72,11 @@ function InteractiveForm() {
           onSubmit={handleSubmit}
         >
           <p className="text-4xl font-bold font-mono drop-shadow-[5px_5px_#fda5d5] ">
-            Regístrese.
+            {t("title")}.
           </p>
           <div className="flex flex-col justify-start gap-0.5">
             <label htmlFor="countries" className="text-lg">
-              Seleccione un país
+              {t("country")}
             </label>
             {countries ? (
               <select
@@ -98,14 +99,14 @@ function InteractiveForm() {
               </select>
             ) : (
               <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-                Loading...
+                {t("loading")}...
               </div>
             )}
           </div>
 
           <div className="flex flex-col justify-start gap-0.5">
             <label htmlFor="states" className="text-md">
-              Seleccione un estado
+              {t("state")}
             </label>
             {states ? (
               <select
@@ -128,7 +129,7 @@ function InteractiveForm() {
               </select>
             ) : (
               <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-                Loading...
+                {t("loading")}...
               </div>
             )}
           </div>
@@ -137,7 +138,7 @@ function InteractiveForm() {
             cities.length > 0 && (
               <div className="flex flex-col justify-start gap-0.5">
                 <label htmlFor="city" className="text-md">
-                  Seleccione una ciudad
+                  {t("city")}
                 </label>
                 <select
                   name="city"
@@ -161,17 +162,17 @@ function InteractiveForm() {
           ) : (
             <div className="flex flex-col justify-start gap-0.5">
               <p htmlFor="city" className="text-md">
-                Seleccione una ciudad
+                {t("city")}
               </p>
               <div className="rounded-sm p-0.5 px-1.5 shadow-[5px_5px_#1447e6] ring-1 ring-blue-700 hover:cursor-pointer hover:shadow-none focus:outline-none transition duration-150 ease-in-out hover:ring-2">
-                Loading...
+                {t("loading")}...
               </div>
             </div>
           )}
 
           <div className="flex flex-col justify-start gap-0.5">
             <label htmlFor="name" className="text-md">
-              Nombre completo
+              {t("name")}
             </label>
             <input
               type="text"
@@ -191,7 +192,7 @@ function InteractiveForm() {
           </div>
           <div className="flex flex-col justify-start gap-0.5">
             <label htmlFor="mail" className="text-md">
-              Correo electrónico
+              {t("email")}
             </label>
             <input
               type="text"
@@ -212,7 +213,7 @@ function InteractiveForm() {
 
           <div className="flex flex-col justify-start gap-0.5">
             <label htmlFor="direction" className="text-md">
-              Dirección
+              {t("address")}
             </label>
             <input
               type="text"
@@ -228,13 +229,13 @@ function InteractiveForm() {
               className="bg-white text-lg font-semibold rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#05df72] hover:text-green-400 hover:ring-green-400"
               // onClick={handleConfirm}
             >
-              Guardar
+              {t("saveButton")}
             </button>
             <button
               type="reset"
               className="bg-white text-lg font-semibold rounded-lg ring-2 ring-black px-5 py-2 transition-all duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#fb2c36] hover:text-red-500 hover:ring-red-500"
             >
-              Cancelar
+              {t("cancelButton")}
             </button>
           </div>
         </form>

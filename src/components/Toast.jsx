@@ -1,7 +1,9 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export function Toast({ value, open, handleClose }) {
-  const { msg, error } = value;
+  const { error } = value;
+  const { t } = useTranslation(["interactiveForm", "common"]);
 
   useEffect(() => {
     const tout = setTimeout(handleClose, 3000);
@@ -17,7 +19,9 @@ export function Toast({ value, open, handleClose }) {
         open ? "block" : "hidden"
       } ${error ? "bg-red-500" : "bg-green-500"}`}
     >
-      <p className="text-md">{msg}</p>
+      <p className="text-md">
+        {error ? t("errorMessage") : t("successMessage")}
+      </p>
       <div
         onClick={handleClose}
         className="mr-1 cursor-pointer rounded text-sm font-normal hover:bg-[rgba(0,0,0,0.2)] transition-all duration-150"

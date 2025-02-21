@@ -1,0 +1,10 @@
+{
+  "title": "¿Confirmas estos datos?",
+  "name": "Nombre",
+  "email": "Email",
+  "country": "País",
+  "state": "Estado",
+  "city": "Ciudad",
+  "address": "Dirección",
+  "confirmButton": "Confirmar"
+}

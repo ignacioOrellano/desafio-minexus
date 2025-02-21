@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
+
 export function ConfirmationModal({
   openModal,
   handleCloseModal,
   data,
   handleConfirm,
 }) {
+  const { t } = useTranslation(["confirmationModal", "common"]);
   const { name, mail, country, state, city, direction } = data;
 
   const handleClick = () => {
@@ -38,37 +41,37 @@ export function ConfirmationModal({
           </svg>
         </div>
         <h2 className="text-2xl font-mono font-bold select-none drop-shadow-[3px_3px_#fda5d5] mb-2">
-          ¿Desea enviar datos?
+          {t("title")}
         </h2>
         <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-          <strong>Nombre:</strong> {name}
+          <strong>{t("name")}:</strong> {name}
         </p>
         <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-          <strong>Email:</strong> {mail}
+          <strong>{t("email")}:</strong> {mail}
         </p>
         <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-          <strong>País:</strong> {country}
+          <strong>{t("country")}:</strong> {country}
         </p>
         {state && (
           <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-            <strong>Estado:</strong> {state}
+            <strong>{t("state")}:</strong> {state}
           </p>
         )}
         {city && (
           <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-            <strong>Ciudad:</strong> {city}
+            <strong>{t("city")}:</strong> {city}
           </p>
         )}
         {direction && (
           <p className="p-0 m-1 break-words hyphens-manual selection:bg-pink-300 selection:text-white">
-            <strong>Dirección:</strong> {direction}
+            <strong>{t("address")}:</strong> {direction}
           </p>
         )}
         <button
           className="bg-white text-xl font-semibold rounded-lg ring-2 ring-black px-5 py-2 my-4 transition duration-300 ease-in-out cursor-pointer hover:shadow-[8px_8px_#155dfc] hover:text-blue-600 hover:ring-blue-600 self-center"
           onClick={handleClick}
         >
-          Confirmar
+          {t("confirmButton")}
         </button>
       </div>
     </div>

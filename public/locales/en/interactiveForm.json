@@ -1,0 +1,14 @@
+{
+  "title": "Sign Up",
+  "country": "Select a country",
+  "state": "Select a state",
+  "city": "Select a city",
+  "name": "Full name",
+  "email": "Email",
+  "address": "Address",
+  "loading": "Loading",
+  "saveButton": "Save",
+  "cancelButton": "Cancel",
+  "errorMessage": "There was an error",
+  "successMessage": "Data submitted successfully"
+}
