@@ -3,6 +3,7 @@
 @theme {
   --breakpoint-xs: 30rem;
   --animate-slide-in: slide-in 500ms ease;
+  --animate-opacity: opacity 300ms ease;
 
   @keyframes slide-in {
     0% {
@@ -12,6 +13,15 @@
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes opacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
     }
   }
 }

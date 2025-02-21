@@ -32,10 +32,12 @@ function Nav() {
   }, []);
 
   return (
-    <div className="bg-sky-500 px-5 py-2 flex justify-between items-center h-14 select-none">
-      <h1 className="font-bold text-white text-2xl">Desafío MINEXUS</h1>
+    <div className="bg-blue-600 px-5 py-2 flex justify-between items-center h-14 select-none">
+      <h1 className="font-bold font-mono text-white text-3xl">
+        Desafío MINEXUS
+      </h1>
       <Menu>
-        <MenuButton className="flex items-cemter text-sm bg-sky-700 rounded-full px-2.5 py-2 hover:cursor-pointer hover:bg-sky-800 hover:scale-110 transition ease-in-out duration-100">
+        <MenuButton className="flex items-cemter text-sm bg-blue-800 rounded-full px-2.5 py-2 hover:cursor-pointer hover:bg-blue-500  transition ease-in-out duration-200">
           <img
             src={selectedLng.icon}
             alt={selectedLng.alt}
@@ -45,13 +47,13 @@ function Nav() {
         <MenuItems
           anchor="bottom end"
           transition
-          className="backdrop-blur-sm text-md mt-1 px-1 py-1 rounded-lg flex flex-col gapy-1"
+          className="text-md mt-2 px-1 py-1 rounded-lg flex flex-col gapy-1 animate-opacity bg-white ring-4 ring-black"
         >
           {lang.map((lng) => {
             return (
               <MenuItem key={lng.name}>
                 <button
-                  className="flex items-center justify-start gap-1 p-1 px-2 rounded-lg hover:bg-blue-900 hover:text-white hover:cursor-pointer"
+                  className="flex items-center justify-start gap-1 p-1 px-2 rounded-lg hover:bg-blue-700 hover:text-white hover:cursor-pointer"
                   onClick={() => {
                     handleChangeLng(lng.alt);
                     setselectedLng(lng);

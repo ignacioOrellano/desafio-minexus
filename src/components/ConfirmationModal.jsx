@@ -16,7 +16,7 @@ export function ConfirmationModal({
 
   return (
     <div
-      className={`fixed inset-0 bg-[rgb(0,0,0,0.1)] backdrop-blur-xs z-40 ${
+      className={`animate-opacity fixed inset-0 bg-[rgb(0,0,0,0.1)] backdrop-blur-xs z-40 ${
         openModal ? "block" : "hidden"
       }`}
     >
