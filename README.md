@@ -34,15 +34,24 @@ Se recomienda agregar un alto grado de personalización en el diseño.
 
 Se recomienda usar alguna librería para validar que todos los datos se hayan ingresado y que sean validos para el tipo de dato que se esta ingresando.
 
-API utilizada para la obtencion de países/provincias/ciudades https://countriesnow.space
-
 ## Resolución
 
-Autor: Ignacio Orellano
+**Autor:** Ignacio Orellano
 
-### Ejecutar proyecto
+Puede acceder a el proyecto desde el siguiente link: https://desafio-minexus.vercel.app/
+
+### Ejecutar proyecto localmente
 
 El proyecto usa vite, para correr la aplicación ejecute los siguientes comandos:
 
 - `npm install`
 - `npm run dev`
+
+### Contenido
+
+- **i18n** para manejo de lenguajes
+- **yup** para validación de formulario
+- **tailwindcss** como CSS framework
+- **headlessui** para componentes GUI
+- **heroicons** para iconos
+- API utilizada para la obtencion de países/provincias/ciudades https://countriesnow.space
