@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCountries } from "../hooks/useCountries";
-import { ConfirmationModal } from "./confirmationModal";
+import { ConfirmationModal } from "./ConfirmationModal";
 import { Toast } from "./Toast";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
